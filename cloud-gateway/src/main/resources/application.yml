@@ -1,0 +1,20 @@
+server:
+  port: 9093
+  
+spring:  application:    name: API-GATEWAY  cloud:    gateway:      routes:      - id: serviceA
+        uri: lb://serviceA
+        predicates:          - Path=/serviceOne/**
+      - id: serviceB
+        uri: lb://serviceB
+        predicates:
+          - Path=/serviceTwo/**
+                  
+    
+eureka:  client:    register-with-eureka: true
+    fetch-registry: true
+    service-url:      defaultZone: http://localhost:8089/eureka
+  instance:
+    hostname: localhost
+    
+    
+    
